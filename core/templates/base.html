@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone</title>
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Condicional para carregar o CSS de login e registro -->
+    {% if request.resolver_match.url_name == "login" or request.resolver_match.url_name == "register" %}
+        <link rel="stylesheet" href="{% static 'css/register_login.css' %}">
+    {% endif %}
+
+</head>
+<body class="bg-black text-light">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <!-- Barra Lateral -->
+            {% if request.resolver_match.url_name != "login" and request.resolver_match.url_name != "register" %}
+            <nav class="col-2 d-none d-md-block bg-black sidebar">
+                <div class="d-flex flex-column align-items-start">
+                    <a href="#" class="nav-link active text-light mb-4">
+                        <i class="fa-brands fa-x fa-2x text-primary"></i>
+                    </a>
+                    <a href="{% url 'feed' %}" class="nav-link text-light mb-3">
+                        <i class="fa-solid fa-house"></i> <span>Início</span>
+                    </a>
+                    <a href="#" class="nav-link text-light mb-3">
+                        <i class="fa-solid fa-hashtag"></i> <span>Explorar</span>
+                    </a>
+                    <a href="#" class="nav-link text-light mb-3">
+                        <i class="fa-solid fa-bell"></i> <span>Notificações</span>
+                    </a>
+                    <a href="#" class="nav-link text-light mb-3">
+                        <i class="fa-solid fa-envelope"></i> <span>Mensagens</span>
+                    </a>
+
+                    <!-- Nome do usuário e botão de logout -->
+                    <div class="dropdown mt-5 w-100">
+                        <button class="btn btn-secondary dropdown-toggle text-light w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ request.user.username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark w-100" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Sair da Conta</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {% endif %}
+
+            <!-- Conteúdo Principal -->
+            <main class="col-md-8 col-lg-6 p-4">
+                {% block content %}
+                {% endblock %}
+            </main>
+
+            <!-- Barra Lateral Direita -->
+            {% if request.resolver_match.url_name != "login" and request.resolver_match.url_name != "register" %}
+            <aside class="col-lg-4 d-none d-lg-block p-4">
+                <!-- Aqui removemos os Tópicos em Alta -->
+            </aside>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Faz a mensagem desaparecer após 3 segundos
+        setTimeout(function() {
+            let alertElement = document.getElementById('message-container');
+            if (alertElement) {
+                alertElement.style.transition = "opacity 0.5s ease";
+                alertElement.style.opacity = 0;
+                setTimeout(function() {
+                    alertElement.remove();
+                }, 500); // 500ms para garantir a remoção após a animação
+            }
+        }, 3000); // 3000 ms = 3 segundos
+    </script>
+
+</body>
+</html>
