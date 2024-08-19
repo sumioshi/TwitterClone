@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-lbc!nuc0koo9@e4o@f2%p=&y_)xv*wnqsppeqca+z096#f+-^o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sumioshi.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,13 +80,14 @@ WSGI_APPLICATION = "twitterclone.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitter_clone_db',
-        'USER': 'twitter_dev',
-        'PASSWORD': 'twitter_dev',
-        'HOST': 'localhost',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'Xo5A4XuIzMWGTYk',
+        'HOST': 'restless-frog-4386.flycast',
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation
