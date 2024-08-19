@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-lbc!nuc0koo9@e4o@f2%p=&y_)xv*wnqsppeqca+z096#f+-^o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sumioshi.pythonanywhere.com']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = "twitterclone.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [BASE_DIR / '/templates/core'],
+        'DIRS': [BASE_DIR / 'templates/core'],  # Adjust this path
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -69,6 +69,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "twitterclone.wsgi.application"
 
@@ -123,7 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # This is essential for deployment
+STATICFILES_DIRS = [BASE_DIR / 'static']  # This is for your local static files
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
