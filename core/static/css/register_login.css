@@ -1,0 +1,128 @@
+/* Estilização para as páginas de Login e Registro */
+
+/* Paleta de cores */
+:root {
+    --primary-bg: #000000;
+    --secondary-bg: #16181C;
+    --primary-text: #E7E9EA;
+    --secondary-text: #71767B;
+    --accent-color: #1DA1F2;
+    --danger-color: #E0245E;
+}
+
+/* Estilo geral */
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container principal */
+.auth-container {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+/* Título */
+.auth-container h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-text);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Formulário */
+.auth-container form {
+    margin-top: 1rem;
+}
+
+.auth-container form .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left; /* Alinhamento à esquerda para os campos */
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    border: 1px solid var(--secondary-text);
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    width: 100%; /* Garante que as caixas preencham a largura disponível */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+.auth-container input[type="text"]::placeholder,
+.auth-container input[type="password"]::placeholder {
+    color: var(--secondary-text);
+}
+
+/* Botão principal */
+.auth-container button {
+    background-color: var(--accent-color);
+    border: none;
+    color: #fff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.auth-container button:hover {
+    background-color: #1A8CD8;
+}
+
+/* Links */
+.auth-container a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 1.5rem;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para mensagens de erro e sucesso */
+.message {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.message.error {
+    color: var(--danger-color);
+}
+
+.message.success {
+    color: #28a745;
+}
+
+
+/* Ajustes de Responsividade */
+@media (max-width: 576px) {
+    .auth-container {
+        padding: 1.5rem;
+    }
+
+    .auth-container h2 {
+        font-size: 1.5rem;
+    }
+}
