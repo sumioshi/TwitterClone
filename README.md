@@ -103,8 +103,7 @@ Toda a comunicação entre o front-end e o back-end foi feita de forma fluida, s
 - Senhas armazenadas de forma segura utilizando hash.
 
 ## 🖼️ Prévia Visual
-
-(Insira capturas de tela aqui para ilustrar a aplicação)
+https://github.com/user-attachments/assets/9af31210-278c-44a7-9d3e-3216ab58c05d
 
 ---
 
