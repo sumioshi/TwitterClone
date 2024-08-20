@@ -23,6 +23,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Adicione aqui
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -30,6 +31,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = "twitterclone.urls"
 
@@ -53,17 +55,18 @@ WSGI_APPLICATION = "twitterclone.wsgi.application"
 
 # Configuração do banco de dados
 
+
 ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
 
 if ENVIRONMENT == 'production':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'seu_nome_de_banco_no_pythonanywhere',
-            'USER': 'seu_usuario_do_pythonanywhere',
-            'PASSWORD': 'sua_senha_do_pythonanywhere',
-            'HOST': 'seu_host_do_pythonanywhere',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'sumioshi$default',  # Nome do seu banco de dados
+            'USER': 'sumioshi',  # Seu nome de usuário no PythonAnywhere
+            'PASSWORD': 'sumioshi',  # A senha que você configurou para o MySQL no PythonAnywhere
+            'HOST': 'sumioshi.mysql.pythonanywhere-services.com',
+            'PORT': '3306',
         }
     }
 else:
@@ -77,6 +80,7 @@ else:
             'PORT': '5432',
         }
     }
+
 
 # Validação de senha
 
@@ -105,8 +109,10 @@ USE_TZ = True
 # Arquivos estáticos
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'core/static']  # Ajustei para o diretório onde seus arquivos CSS estão localizados
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Diretório onde os arquivos estáticos serão coletados para produção
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'core/static']
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Configurações adicionais
 
