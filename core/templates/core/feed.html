@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Exibição de Mensagens Temporárias -->
+{% if messages %}
+    <div id="message-container" class="alert-container">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="tweet-card border-secondary p-3 mb-4">
+    <!-- Formulário de criação de tweet -->
+    <form method="post" class="d-flex align-items-center mb-3">
+        {% csrf_token %}
+        <!-- Campo de texto para o tweet -->
+        <input type="text" name="content" class="form-control tweet-input" placeholder="O que está acontecendo?">
+        <div class="border-top pt-2 mb-2"></div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="#" class="text-primary">Todos podem responder</a>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="tweet-icons d-flex gap-3">
+                <i class="fa-solid fa-image"></i>
+                <i class="fa-solid fa-gif"></i>
+                <i class="fa-regular fa-face-smile"></i>
+                <i class="fa-solid fa-calendar-days"></i>
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <button type="submit" class="btn btn-primary">Tweetar</button>
+        </div>
+    </form>
+</div>
+
+<!-- Seção do Feed -->
+<div class="feed">
+    <h4 class="text-light">Feed</h4>
+    {% for tweet in tweets %}
+    <div class="feed-tweet mb-4">
+        <p class="text-light"><strong>{{ tweet.author.user.username }}</strong> <span class="text-secondary">@{{ tweet.author.user.username }}</span></p> <!-- Exibe o nome do autor -->
+        <p class="text-light">{{ tweet.content }}</p>
+        <small class="text-secondary">{{ tweet.created_at|date:"M d, Y, h:i a" }}</small>
+
+        <!-- Verifica se o usuário atual é o autor do tweet antes de exibir o botão de exclusão -->
+        {% if tweet.author.user == request.user %}
+        <form method="post" action="{% url 'delete_tweet' tweet.id %}" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+        </form>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p class="text-light">Ainda não há tweets.</p>
+    {% endfor %}
+</div>
+{% endblock %}
