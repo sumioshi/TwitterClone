@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-lbc!nuc0koo9@e4o@f2%p=&y_)xv*wnqsppeqca+z096#f+-^o"
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sumioshi.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Configurações das aplicações
 
