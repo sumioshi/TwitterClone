@@ -4,12 +4,18 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+
+# Virtual environment
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Environment variables
 *.env
+.env.local
+.env.production
 
 # Django specific
 *.log
@@ -20,14 +26,8 @@ media/
 # Static files
 staticfiles/
 
-# Virtual environment
-venv/
-ENV/
-
-# VS Code settings
+# Editor settings
 .vscode/
-
-# PyCharm settings
 .idea/
 
 # MacOS specific files
@@ -35,3 +35,7 @@ ENV/
 
 # Windows specific files
 Thumbs.db
+
+# Backup and temporary files
+*~
+*.swp
