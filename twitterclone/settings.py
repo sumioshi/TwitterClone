@@ -53,17 +53,18 @@ WSGI_APPLICATION = "twitterclone.wsgi.application"
 
 # Configuração do banco de dados
 
+
 ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
 
 if ENVIRONMENT == 'production':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'seu_nome_de_banco_no_pythonanywhere',
-            'USER': 'seu_usuario_do_pythonanywhere',
-            'PASSWORD': 'sua_senha_do_pythonanywhere',
-            'HOST': 'seu_host_do_pythonanywhere',
-            'PORT': '5432',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'sumioshi$default',  # Nome do seu banco de dados
+            'USER': 'sumioshi',  # Seu nome de usuário no PythonAnywhere
+            'PASSWORD': 'twitterclone',  # A senha que você configurou para o MySQL no PythonAnywhere
+            'HOST': 'sumioshi.mysql.pythonanywhere-services.com',
+            'PORT': '3306',
         }
     }
 else:
@@ -77,6 +78,7 @@ else:
             'PORT': '5432',
         }
     }
+
 
 # Validação de senha
 
