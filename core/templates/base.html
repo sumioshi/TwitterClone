@@ -13,11 +13,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/page2/styles.css' %}">
 
     <!-- Condicional para carregar o CSS de login e registro -->
     {% if request.resolver_match.url_name == "login" or request.resolver_match.url_name == "register" %}
-        <link rel="stylesheet" href="{% static 'css/register_login.css' %}">
+       <link rel="stylesheet" href="{% static 'css/page1/register_login.css' %}">
     {% endif %}
 
 </head>
