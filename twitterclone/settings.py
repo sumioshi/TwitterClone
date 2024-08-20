@@ -60,7 +60,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sumioshi$default',  # Nome do seu banco de dados
         'USER': 'sumioshi',  # Seu nome de usuário no PythonAnywhere
-        'PASSWORD': 'sumioshi',  # A senha do MySQL que você configurou no PythonAnywhere
+        'PASSWORD': 'MN^Trx6E@LQj',  # A senha do MySQL que você configurou no PythonAnywhere
         'HOST': 'sumioshi.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
