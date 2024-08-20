@@ -4,11 +4,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Configurações básicas
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-lbc!nuc0koo9@e4o@f2%p=&y_)xv*wnqsppeqca+z096#f+-^o')
-DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() in ('true', '1', 't')
-ALLOWED_HOSTS = ['sumioshi.pythonanywhere.com', 'localhost', '127.0.0.1']
 
-# (O restante das suas configurações permanece o mesmo)
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', "django-insecure-lbc!nuc0koo9@e4o@f2%p=&y_)xv*wnqsppeqca+z096#f+-^o")
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['sumioshi.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Configurações das aplicações
 
@@ -24,7 +23,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Adicione aqui
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Adicionado para servir arquivos estáticos em produção
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -54,34 +53,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "twitterclone.wsgi.application"
 
-# Configuração do banco de dados
+# Configuração do banco de dados (somente MySQL)
 
-
-ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
-
-if ENVIRONMENT == 'production':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'sumioshi$default',  # Nome do seu banco de dados
-            'USER': 'sumioshi',  # Seu nome de usuário no PythonAnywhere
-            'PASSWORD': 'sumioshi',  # A senha que você configurou para o MySQL no PythonAnywhere
-            'HOST': 'sumioshi.mysql.pythonanywhere-services.com',
-            'PORT': '3306',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sumioshi$default',  # Nome do seu banco de dados
+        'USER': 'sumioshi',  # Seu nome de usuário no PythonAnywhere
+        'PASSWORD': 'sumioshi',  # A senha do MySQL que você configurou no PythonAnywhere
+        'HOST': 'sumioshi.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'twitter_clone_db',
-            'USER': 'twitter_dev',
-            'PASSWORD': 'twitter_dev',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-
+}
 
 # Validação de senha
 
