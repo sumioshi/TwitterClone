@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -76,17 +76,33 @@ WSGI_APPLICATION = "twitterclone.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitter_clone_db',
-        'USER': 'twitter_dev',
-        'PASSWORD': 'twitter_dev',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# Verifica o ambiente: se não estiver definido, assume como 'development'
+ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
 
+if ENVIRONMENT == 'production':
+    # Configurações para o deploy no PythonAnywhere
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'seu_nome_de_banco_no_pythonanywhere',
+            'USER': 'seu_usuario_do_pythonanywhere',
+            'PASSWORD': 'sua_senha_do_pythonanywhere',
+            'HOST': 'seu_host_do_pythonanywhere',
+            'PORT': '5432',
+        }
+    }
+else:
+    # Configurações locais (desenvolvimento)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'twitter_clone_db',
+            'USER': 'twitter_dev',
+            'PASSWORD': 'twitter_dev',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
